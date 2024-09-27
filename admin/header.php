@@ -243,7 +243,7 @@
         <div class="collapse" data-bs-parent="#sidebarNav" id="general-pages">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="product_list.php?list=urunler" class="nav-link">Tüm Ürünler</a>
+              <a href="product_list.php?list=urunler" class="nav-link">Ürünler</a>
             </li>
             <li class="nav-item">
               <a href="product_list.php?list=oyunlar" class="nav-link">Oyunlar</a>
@@ -253,6 +253,9 @@
             </li>
             <li class="nav-item">
               <a href="product_list.php?list=filmler" class="nav-link">Filmler</a>
+            </li>
+            <li class="nav-item">
+              <a href="product_list.php?list=kategoriler" class="nav-link">Kategoriler</a>
             </li>
           </ul>
         </div>

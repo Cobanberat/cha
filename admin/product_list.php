@@ -9,25 +9,31 @@ switch($category) {
     case 'oyunlar':
         $title = "Oyunlar";
         $table = "oyun";
-        $columns = ['ID', 'İsim', 'Bilgi', 'Tür', 'Resim', 'Tarih', 'Durum'];
+        $columns = ['ID', 'İsim', 'Bilgi', 'Tür', 'Resim', 'Durum'];
         break;
 
     case 'diziler':
         $title = "Diziler";
         $table = "dizi";
-        $columns = ['ID', 'İsim', 'Bilgi', 'Tür', 'Resim', 'Tarih', 'Durum'];
+        $columns = ['ID', 'İsim', 'Bilgi', 'Tür', 'Resim', 'Durum'];
         break;
 
     case 'filmler':
         $title = "Filmler";
         $table = "film";
-        $columns = ['ID', 'İsim', 'Bilgi', 'Tür', 'Resim', 'Tarih', 'Durum'];
+        $columns = ['ID', 'İsim', 'Bilgi', 'Tür', 'Resim', 'Durum'];
         break;
 
     case 'urunler':
-        $title = "Tüm Ürünler";
-        $table = "";
-        $columns = ['ID', 'İsim', 'Bilgi', 'Tür', 'Resim', 'Tarih', 'Durum'];
+        $title = "Ürünler";
+        $table = "urun";
+        $columns = ['ID', 'İsim', 'Bilgi', 'parent_id', 'Resim', 'Durum'];
+        break;
+
+    case 'kategoriler':
+        $title = "Kategoriler";
+        $table = "parent";
+        $columns = ['ID', 'İsim', 'üst', '', '','','']; 
         break;
 
     default:
@@ -37,13 +43,19 @@ switch($category) {
 }
 
 if ($table) {
-    $query = "SELECT id, name as 'İsim', info as 'Bilgi', tur as 'Tür', img as 'Resim', date as 'Tarih', durum as 'Durum' FROM $table";
+    if ($category == 'kategoriler') {
+        $query = "SELECT id, name as 'İsim', ust as 'üst' FROM $table";
+    } else if ($category == 'urunler') {
+        $query = "SELECT id, name as 'İsim', info as 'Bilgi', parent_id as 'Parent ID', img as 'Resim', durum as 'Durum' FROM $table";
+    } else {
+        $query = "SELECT id, name as 'İsim', info as 'Bilgi', tur as 'Tür', img as 'Resim', durum as 'Durum' FROM $table";
+    }
+    
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
     $data = [];
-    
 }
 ?>
 
@@ -79,6 +91,13 @@ if ($table) {
                                         <?php foreach ($row as $cell) : ?>
                                             <td><?= htmlspecialchars($cell) ?></td>
                                         <?php endforeach; ?>
+                                        <?php if($category == 'kategoriler'){ ?>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <?php }else{ ?>
+                                    <?php } ?>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>
@@ -94,5 +113,4 @@ if ($table) {
     </div>
 </div>
 
-<?php include "footer.php"; 
-?>
+<?php include "footer.php"; ?>
