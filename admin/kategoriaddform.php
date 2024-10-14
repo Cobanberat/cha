@@ -17,10 +17,10 @@ $kategoriler = $conn->query("select * from parent")->fetchAll(PDO::FETCH_ASSOC);
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">ürün Ekle</h6>
+                <h6 class="card-title">Kategori Ekle</h6>
                 <form method="post" action="form/kategoriadd.php" class="forms-sample" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="exampleInputUsername1" class="form-label">ürün İsmi </label>
+                        <label for="exampleInputUsername1" class="form-label">Kategori İsmi</label>
                         <input type="text" name="name" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="İsim">
                     </div>  
                     <div class="mb-3">

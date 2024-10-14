@@ -24,7 +24,7 @@ if ($email && $password) {
                 "durum" => "true",
                 "text" => "Başarıyla Giriş Yapıldı"
             ];
-            header("Location:../index/chatluck.php");
+            header("Location:../index/index.php");
         } else {
             $_SESSION["message"] = [
                 "durum" => "false",
